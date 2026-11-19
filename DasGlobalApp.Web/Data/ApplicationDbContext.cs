@@ -15,21 +15,29 @@ namespace DasGlobalApp.Web.Data
         public DbSet<Sucursal> Sucursales => Set<Sucursal>();
         public DbSet<Colaborador> Colaboradores => Set<Colaborador>();
 
-        protected override void OodelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Sucursal>()
-                .HasOne(s => s.Empresa)
-                .WithMany(e => e.Sucursales)
-                .HasForeignKey(s => s.IdEmpresa)
-                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Sucursal>(entity =>
+            {
+                entity.ToTable("Sucursales");
+                entity.Property(s => s.IdEmpresa).HasColumnName("EmpresaId");
+                entity.HasOne(s => s.Empresa)
+                    .WithMany(e => e.Sucursales)
+                    .HasForeignKey(s => s.IdEmpresa)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
 
-            modelBuilder.Entity<Colaborador>()
-                .HasOne(c => c.Sucursal)
-                .WithMany(s => s.Colaboradores)
-                .HasForeignKey(c => c.IdSucursal)
-                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Colaborador>(entity =>
+            {
+                entity.ToTable("Colaboradores");
+                entity.Property(c => c.IdSucursal).HasColumnName("SucursalId");
+                entity.HasOne(c => c.Sucursal)
+                    .WithMany(s => s.Colaboradores)
+                    .HasForeignKey(c => c.IdSucursal)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
 
         }
     }
