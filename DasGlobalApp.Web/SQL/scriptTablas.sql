@@ -1,6 +1,9 @@
 CREATE DATABASE DasGlobalDb_CristianChamo
 GO
 
+USE DasGlobalDb_CristianChamo
+GO
+
 CREATE TABLE Empresas (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Nombre NVARCHAR(150) NOT NULL,

@@ -1,0 +1,27 @@
+CREATE DATABASE DasGlobalDb_CristianChamo
+GO
+
+CREATE TABLE Empresas (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Nombre NVARCHAR(150) NOT NULL,
+    Pais NVARCHAR(100) NOT NULL
+)
+
+CREATE TABLE Sucursales (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    EmpresaId INT NOT NULL,
+    Nombre NVARCHAR(150) NOT NULL,
+    Direccion NVARCHAR(250) NOT NULL,
+    Telefono NVARCHAR(30) NOT NULL,
+    CONSTRAINT FK_Sucursales_Empresas FOREIGN KEY (EmpresaId) REFERENCES Empresas(Id) ON DELETE CASCADE
+)
+
+CREATE TABLE Colaboradores (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    SucursalId INT NOT NULL,
+    Nombre NVARCHAR(150) NOT NULL,
+    CUI NVARCHAR(30) NOT NULL,
+    CONSTRAINT FK_Colaboradores_Sucursales FOREIGN KEY (SucursalId) REFERENCES Sucursales(Id) ON DELETE CASCADE
+)
+
+SELECT * FROM Sucursales
