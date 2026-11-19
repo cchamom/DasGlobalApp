@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace DasGlobalApp.Web.DTOs
 {
-    public class EmpresaDto
+   public class EmpresaDto
     {
         [JsonPropertyName("nombre")]
         public string Nombre { get; set; } = string.Empty;
