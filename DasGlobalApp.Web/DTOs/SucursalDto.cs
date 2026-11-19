@@ -22,7 +22,7 @@ namespace DasGlobalApp.Web.DTOs
     }
     public class SucursalPatchDto
     {
-       [JsonPropertyName("nombre")]
+        [JsonPropertyName("nombre")]
         public string Nombre { get; set; } = string.Empty;
 
         [JsonPropertyName("direccion")]
@@ -37,21 +37,21 @@ namespace DasGlobalApp.Web.DTOs
     }
 
     public class SucursalRespuestaDto
-{
-    public int Id { get; set; }
-    public int IdEmpresa { get; set; }
-    public string NombreEmpresa { get; set; } = string.Empty;
-    public string Nombre { get; set; } = string.Empty;
-    public string Direccion { get; set; } = string.Empty;
-    public string Telefono { get; set; } = string.Empty;
-    public List<ColaboradorRespuestaDto> Colaboradores { get; set; } = new();
-}
+    {
+        public int Id { get; set; }
+        public int IdEmpresa { get; set; }
+        public string NombreEmpresa { get; set; } = string.Empty;
+        public string Nombre { get; set; } = string.Empty;
+        public string Direccion { get; set; } = string.Empty;
+        public string Telefono { get; set; } = string.Empty;
+        public List<ColaboradorRespuestaDto> Colaboradores { get; set; } = new();
+    }
 
-public class ColaboradorRespuestaDto
-{
-    public int Id { get; set; }
-    public int IdSucursal { get; set; }
-    public string Nombre { get; set; } = string.Empty;
-    public string CUI { get; set; } = string.Empty;
-}
+    public class ColaboradorRespuestaDto
+    {
+        public int Id { get; set; }
+        public int IdSucursal { get; set; }
+        public string Nombre { get; set; } = string.Empty;
+        public string CUI { get; set; } = string.Empty;
+    }
 }
