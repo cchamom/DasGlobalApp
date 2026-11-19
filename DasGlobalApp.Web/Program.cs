@@ -17,6 +17,18 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     });
 
+const string ReactPolicy = "AllowReactDev";
+
+builder.Services.AddCors(options =>
+{
+   options.AddPolicy(ReactPolicy, policy =>
+   {
+       policy.WithOrigins("http://localhost:5173", "http://localhost:3000")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+   });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
