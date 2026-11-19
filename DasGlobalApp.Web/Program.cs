@@ -21,12 +21,12 @@ const string ReactPolicy = "AllowReactDev";
 
 builder.Services.AddCors(options =>
 {
-   options.AddPolicy(ReactPolicy, policy =>
-   {
-       policy.WithOrigins("http://localhost:5173", "http://localhost:3000")
+    options.AddPolicy(ReactPolicy, policy =>
+    {
+        policy.WithOrigins("http://localhost:5173", "http://localhost:3000")
               .AllowAnyHeader()
               .AllowAnyMethod();
-   });
+    });
 });
 
 builder.Services.AddEndpointsApiExplorer();
@@ -39,6 +39,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(ReactPolicy);
 
 app.UseHttpsRedirection();
 
